@@ -15,7 +15,6 @@ This is my list for the next version of the system:
 5. Mail Service
 
 ## Installation Steps:
-
 1. Clone this repository:
 ```bash
 git clone https://github.com/rDaher11/hospital-api-for-customer.git
