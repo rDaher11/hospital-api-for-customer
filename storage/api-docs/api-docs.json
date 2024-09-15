@@ -1,0 +1,2708 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Hospital Management API",
+        "description": "API for hospital management system",
+        "contact": {
+            "name": "Swagger API Team"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/appointments": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "list all appointements",
+                "description": "List Appointements Endpoint.",
+                "operationId": "listAppointements",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/appointements/doctors/{id}/": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "list doctor's appointements",
+                "description": "Doctor's Appointements Endpoint.",
+                "operationId": "listDoctorAppointements",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "doctor's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    },
+                    "403": {
+                        "description": "Not Authorized"
+                    }
+                }
+            }
+        },
+        "/api/appointements/patients/{id}/": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "list appointements for specific patient",
+                "description": "Patient's Appointements Endpoint.",
+                "operationId": "listPatientAppointements",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "patient's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/appointements/me": {
+            "get": {
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "list current patient's  appointements",
+                "description": "Current Patient's Appointements Endpoint.",
+                "operationId": "listCurrentAppointements",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/appointements/me/{id}": {
+            "get": {
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "read current user's  appointement",
+                "description": "Read  Current Appointement Endpoint.",
+                "operationId": "readCurrentAppointements",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "appointement's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/appointements/patients": {
+            "get": {
+                "tags": [
+                    "Doctor"
+                ],
+                "summary": "list patients' appointements for the current doctor",
+                "description": "Patients' Appointements Endpoint.",
+                "operationId": "listPatientsAppointements",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/appointements/me/patients/{id}": {
+            "get": {
+                "tags": [
+                    "Doctor"
+                ],
+                "summary": "read patient's appointement",
+                "description": "Read Patient Appointement Endpoint.",
+                "operationId": "readPatientAppointement",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "appointement's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Object Not Found"
+                    },
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Doctor"
+                ],
+                "summary": "update appointement's status",
+                "description": "Update Appointement Endpoint.",
+                "operationId": "updateAppointement",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "doctor's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "status"
+                                ],
+                                "properties": {
+                                    "status": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/appointements/": {
+            "post": {
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "create appointement",
+                "description": "Create Appointement Endpoint.",
+                "operationId": "createAppointement",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "doctor_id",
+                                    "date",
+                                    "period"
+                                ],
+                                "properties": {
+                                    "doctor_id": {
+                                        "type": "integer"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "period": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/appointements/schedule/doctors/{id}": {
+            "get": {
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "schedule doctor appointements for the next 7 days",
+                "description": "Doctor's Schedule Endpoint.",
+                "operationId": "doctorSchedule",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "doctor's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/appointements/me/patients/{id}/tests/": {
+            "post": {
+                "tags": [
+                    "Doctor"
+                ],
+                "summary": "submit appointement's Test",
+                "description": "Submit Test Endpoint.",
+                "operationId": "submitTest",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "patient's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "breathing_rate",
+                                    "body_temperature",
+                                    "pulse_rate",
+                                    "medical_notes",
+                                    "prescription"
+                                ],
+                                "properties": {
+                                    "breathing_rate": {
+                                        "type": "number"
+                                    },
+                                    "body_temperature": {
+                                        "type": "number"
+                                    },
+                                    "pulse_rate": {
+                                        "type": "number"
+                                    },
+                                    "medical_notes": {
+                                        "type": "number"
+                                    },
+                                    "prescription": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            }
+        },
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "Doctor",
+                    "Patient",
+                    "Nurse",
+                    "Admin"
+                ],
+                "summary": "log into the system",
+                "description": "Login Endpoint.",
+                "operationId": "login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    }
+                }
+            }
+        },
+        "/api/auth/logout": {
+            "post": {
+                "tags": [
+                    "Doctor",
+                    "Patient",
+                    "Nurse",
+                    "Admin"
+                ],
+                "summary": "log out from system",
+                "description": "Logout Endpoint.",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/auth/refresh": {
+            "post": {
+                "tags": [
+                    "Doctor",
+                    "Patient",
+                    "Nurse",
+                    "Admin"
+                ],
+                "summary": "refresh user's token",
+                "description": "Refresh Endpoint.",
+                "operationId": "refresh",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/clinics": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "list all clinics",
+                "description": "List Clinics Endpoint.",
+                "operationId": "listClinics",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/clinics/{id}": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "read a clinic",
+                "description": "Read Clinic Endpoint.",
+                "operationId": "readClinic",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "clinic's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "update clinic",
+                "description": "Update Clinic Endpoint.",
+                "operationId": "updateClinic",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "clinic's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "clinic_code": {
+                                        "type": "string"
+                                    },
+                                    "departement_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "delete clinic",
+                "description": "Delete Clinic Endpoint.",
+                "operationId": "deleteClinics",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "clinic's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            }
+        },
+        "/api/clinics/": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "create clinic",
+                "description": "Create Clinic Endpoint.",
+                "operationId": "createClinic",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "clinic_code",
+                                    "departement_id"
+                                ],
+                                "properties": {
+                                    "clinic_code": {
+                                        "type": "string"
+                                    },
+                                    "departement_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/departements": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "create a departement",
+                "description": "Create Departement Endpoint.",
+                "operationId": "createDepartements",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "specialization",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "specialization": {
+                                        "type": "integer"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    }
+                }
+            }
+        },
+        "/api/departements/{id}": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "read a departement",
+                "description": "Read Departement Endpoint.",
+                "operationId": "readDepartement",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "departement's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "update a departement",
+                "description": "Update Departement Endpoint.",
+                "operationId": "updateDepartement",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "departement's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "departement_name": {
+                                        "type": "string"
+                                    },
+                                    "specialization": {
+                                        "type": "integer"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "delete a departement",
+                "description": "Delete Departement Endpoint.",
+                "operationId": "deleteDepartement",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "departement's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            }
+        },
+        "/api/departements/": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "list departements",
+                "description": "List Departements Endpoint.",
+                "operationId": "listDepartements",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/departements/{id}/doctors/": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "list departement's doctors",
+                "description": "List Doctors Working in Specific Departement Endpoint.",
+                "operationId": "listDepartementDoctors",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "departement's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "create a departement's doctor",
+                "description": "Create Doctor's Departement Endpoint.",
+                "operationId": "createDepartementDoctor",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "departement's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "first_name",
+                                    "last_name",
+                                    "email",
+                                    "password",
+                                    "phone_number",
+                                    "address",
+                                    "gender",
+                                    "birth_date",
+                                    "specialization",
+                                    "short_description",
+                                    "rate",
+                                    "assigned_at"
+                                ],
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "phone_number": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "$ref": "#/components/schemas/Gender"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "specialization": {
+                                        "$ref": "#/components/schemas/MedicalSpecialization"
+                                    },
+                                    "short_description": {
+                                        "type": "string"
+                                    },
+                                    "rate": {
+                                        "$ref": "#/components/schemas/Rate"
+                                    },
+                                    "assigned_at": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    }
+                }
+            }
+        },
+        "/api/departements/{id}/nurses/": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "list departement's nurses",
+                "description": "List Nurses Working in Specific Departement Endpoint.",
+                "operationId": "listDepartementNurses",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "departement's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "operationId": "f034f1871a0481de2c8a740a5dc6cc45",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "departement's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "first_name",
+                                    "last_name",
+                                    "email",
+                                    "password",
+                                    "phone_number",
+                                    "address",
+                                    "gender",
+                                    "birth_date",
+                                    "specialization",
+                                    "short_description",
+                                    "rate",
+                                    "assinged_at"
+                                ],
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "phone_number": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "type": "integer"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "specialization": {
+                                        "type": "integer"
+                                    },
+                                    "short_description": {
+                                        "type": "string"
+                                    },
+                                    "assigned_at": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "rate": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    }
+                }
+            }
+        },
+        "/api/departements/{id}/clinics/": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "list departement's clinics",
+                "description": "List Clinics in Specific Departement Endpoint.",
+                "operationId": "listDepartementClinics",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "departement's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "create departement's clinic",
+                "description": "Create Departement's Clinic Endpoint.",
+                "operationId": "createDepartementClinics",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "departement's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "clinic_code"
+                                ],
+                                "properties": {
+                                    "clinic_code": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    }
+                }
+            }
+        },
+        "/api/doctors": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "add a new doctor to the system",
+                "description": "Create Doctor Endpoint.",
+                "operationId": "createDoctor",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "first_name",
+                                    "last_name",
+                                    "email",
+                                    "password",
+                                    "phone_number",
+                                    "address",
+                                    "gender",
+                                    "birth_date",
+                                    "departement_id",
+                                    "specialization",
+                                    "short_description",
+                                    "assigned_at",
+                                    "rate"
+                                ],
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "phone_number": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "$ref": "#/components/schemas/Gender"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "departement_id": {
+                                        "type": "integer"
+                                    },
+                                    "specialization": {
+                                        "$ref": "#/components/schemas/MedicalSpecialization"
+                                    },
+                                    "short_description": {
+                                        "type": "string"
+                                    },
+                                    "assigned_at": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "rate": {
+                                        "$ref": "#/components/schemas/Rate"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    }
+                }
+            }
+        },
+        "/api/doctors/{id}": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "read a doctor info",
+                "description": "Read a Specific Doctor Info Endpoint.",
+                "operationId": "readDoctor",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "doctor's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "update doctor info",
+                "description": "Update Specific Doctor Info Endpoint.",
+                "operationId": "updateDoctor",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "doctor's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "phone_number": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "$ref": "#/components/schemas/Gender"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "departement_id": {
+                                        "type": "integer"
+                                    },
+                                    "specialization": {
+                                        "$ref": "#/components/schemas/MedicalSpecialization"
+                                    },
+                                    "short_description": {
+                                        "type": "string"
+                                    },
+                                    "assigned_at": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "rate": {
+                                        "$ref": "#/components/schemas/Rate"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "delete doctor info",
+                "description": "Delete Specific Doctor Endpoint.",
+                "operationId": "deleteDoctor",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "doctor's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            }
+        },
+        "/api/doctors/": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "list all doctors",
+                "description": "List All Doctors Endpoint.",
+                "operationId": "List Doctors",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/doctors/search/": {
+            "get": {
+                "tags": [
+                    "Patient",
+                    "Admin"
+                ],
+                "summary": "Seach on doctors using their full names",
+                "description": "Seach on Doctors Endpoint.",
+                "operationId": "DoctorSearch",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "doctor's full name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/doctors/me": {
+            "get": {
+                "tags": [
+                    "Doctor"
+                ],
+                "summary": "current doctor info",
+                "description": "Current Doctor Endpoint.",
+                "operationId": "currentDoctor",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Doctor"
+                ],
+                "summary": "update personal info for current doctor",
+                "description": "Update Doctor's Personal Info Endpoint.",
+                "operationId": "updateCurrentDoctor",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "phone_number": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "$ref": "#/components/schemas/Gender"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/statistics/best_doctors": {
+            "get": {
+                "tags": [
+                    "Patient",
+                    "Admin"
+                ],
+                "summary": "list the best four doctors",
+                "description": "Best Doctors Report Endpoint.",
+                "operationId": "bestDoctors",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/nurses/{id}": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "read specific nurse info",
+                "description": "Read Nurse Endpoint.",
+                "operationId": "readNurse",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "nurse's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "update a nurse",
+                "description": "Update Nurse Endpoint.",
+                "operationId": "updateNurse",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "nurse's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "phone_number": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "$ref": "#/components/schemas/Gender"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "departement_id": {
+                                        "type": "integer"
+                                    },
+                                    "specialization": {
+                                        "$ref": "#/components/schemas/MedicalSpecialization"
+                                    },
+                                    "short_description": {
+                                        "type": "string"
+                                    },
+                                    "rate": {
+                                        "$ref": "#/components/schemas/Rate"
+                                    },
+                                    "doctor_id": {
+                                        "type": "integer"
+                                    },
+                                    "assigned_at": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "delete a nurse",
+                "description": "Delete Nurse Endpoint.",
+                "operationId": "deleteNurse",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "nurse's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            }
+        },
+        "/api/nurses/": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "list all nurses",
+                "description": "List Nurses Endpoint.",
+                "operationId": "listNurses",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "operationId": "30f9eb106e755fd305297262461404e2",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "first_name",
+                                    "last_name",
+                                    "email",
+                                    "password",
+                                    "phone_number",
+                                    "address",
+                                    "gender",
+                                    "birth_date",
+                                    "specialization",
+                                    "short_description",
+                                    "rate",
+                                    "assinged_at",
+                                    "departement_id"
+                                ],
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "phone_number": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "type": "integer"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "specialization": {
+                                        "type": "integer"
+                                    },
+                                    "short_description": {
+                                        "type": "string"
+                                    },
+                                    "assigned_at": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "rate": {
+                                        "type": "integer"
+                                    },
+                                    "departement_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            }
+        },
+        "/api/nurses/me/": {
+            "get": {
+                "tags": [
+                    "Nurse"
+                ],
+                "summary": "read the current nurse",
+                "description": "Current Nurse Endpoint.",
+                "operationId": "currentNurses",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/nurses/me": {
+            "put": {
+                "tags": [
+                    "Nurse"
+                ],
+                "summary": "update personal info for current nurse",
+                "description": "Update Nurse's Personal Info Endpoint.",
+                "operationId": "updateCurrentNurse",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "phone_number": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "$ref": "#/components/schemas/Gender"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/patients": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "list all patients",
+                "description": "List Patients Endpoint.",
+                "operationId": "listPatients",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Anonymous"
+                ],
+                "summary": "create a new patient",
+                "description": "Create Patient Endpoint.",
+                "operationId": "createPatient",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "first_name",
+                                    "last_name",
+                                    "email",
+                                    "password",
+                                    "phone_number",
+                                    "address",
+                                    "gender",
+                                    "birth_date",
+                                    "ssn"
+                                ],
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "phone_number": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "type": "integer"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "ssn": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    }
+                }
+            }
+        },
+        "/api/patients/{id}": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "read a patient",
+                "description": "Read Patient Endpoint.",
+                "operationId": "readPatient",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "patient's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "update a patient",
+                "description": "Update Patient Endpoint.",
+                "operationId": "updatePatient",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "patient's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "phone_number": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "$ref": "#/components/schemas/Gender"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "ssn": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    },
+                    "420": {
+                        "description": "Unprocessable Content"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "delete a patient",
+                "description": "Delete Patient Endpoint.",
+                "operationId": "deletePatient",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "patient's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            }
+        },
+        "/api/patients/{id}/doctors": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "list doctors for a patient",
+                "description": "List Patient's Doctors Endpoint.",
+                "operationId": "listPatientDoctors",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "patient's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            }
+        },
+        "/api/patients/confirm": {
+            "post": {
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "confirm patient's account",
+                "description": "Confirm Patient Endpoint.",
+                "operationId": "confirmPatient",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "token"
+                                ],
+                                "properties": {
+                                    "token": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/patients/me": {
+            "get": {
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "current patient's account",
+                "description": "Current Patient Endpoint.",
+                "operationId": "currentPatient",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "update personal info for current patient",
+                "description": "Update Patient's Personal Info Endpoint.",
+                "operationId": "updateCurrentPatient",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "phone_number": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "$ref": "#/components/schemas/Gender"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/patients/me/doctors": {
+            "get": {
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "list current patient's doctors",
+                "description": "Current Patient's Doctors Endpoint.",
+                "operationId": "currentPatientDoctors",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/tests/": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "list routine tests",
+                "description": "List Routine Tests Endpoint.",
+                "operationId": "listRoutineTests",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/tests/{id}/": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "read a routine test",
+                "description": "Read Routine Test Endpoint.",
+                "operationId": "readRoutineTest",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "test's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            }
+        },
+        "/api/tests/patients/{id}/": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "list patient's routine tests",
+                "description": "List Routine Tests for Specific Patient Endpoint.",
+                "operationId": "listPatientTests",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "patient's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            }
+        },
+        "/api/tests/doctors/{id}/": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "list all doctor's routine tests",
+                "description": "List Routine Tests Made By Speicifc Doctor Endpoint.",
+                "operationId": "listDoctorTests",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "departement's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    }
+                }
+            }
+        },
+        "/api/tests/me/": {
+            "get": {
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "list current patient's routine tests",
+                "description": "List Current Patient's Tests Endpoint.",
+                "operationId": "listCurrentPatientTests",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/tests/me/{id}/": {
+            "get": {
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "read current patient's routine test",
+                "description": "Read Current Patient's Test Endpoint.",
+                "operationId": "readCurrentPatientTest",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "test's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/tests/me/patients/": {
+            "get": {
+                "tags": [
+                    "Doctor"
+                ],
+                "summary": "list current doctor's routine tests",
+                "description": "List Routine Tests Made By Current Doctor Endpoint.",
+                "operationId": "listCurrentDoctorTests",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Not authorized"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/tests/me/patients/{id}/": {
+            "get": {
+                "tags": [
+                    "Doctor"
+                ],
+                "summary": "read routine test made by current doctor",
+                "description": "Read Current Doctor Test Endpoint.",
+                "operationId": "readCurrentDoctorTest",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "test's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Doctor"
+                ],
+                "summary": "update routine test",
+                "description": "Update Routine Test Endpoint.",
+                "operationId": "updateRoutineTest",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "test's id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "breathing_rate": {
+                                        "type": "number"
+                                    },
+                                    "body_temperature": {
+                                        "type": "number"
+                                    },
+                                    "pulse_rate": {
+                                        "type": "number"
+                                    },
+                                    "medical_notes": {
+                                        "type": "string"
+                                    },
+                                    "prescription": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Not authorized"
+                    },
+                    "404": {
+                        "description": "Object Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    }
+                }
+            }
+        },
+        "/api/verify_tokens/search/": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "search on patient's verify token",
+                "description": "Search on Verify Tokens Endpoint.",
+                "operationId": "searchVerifyTokens",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "ssn"
+                                ],
+                                "properties": {
+                                    "ssn": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AppointementStatus": {
+                "title": "Appointement Status Enum",
+                "type": "integer",
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3
+                ]
+            },
+            "BloodType": {
+                "title": "Blood Type Enum",
+                "type": "integer",
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
+                ]
+            },
+            "Gender": {
+                "title": "Gender Enum",
+                "type": "integer",
+                "enum": [
+                    0,
+                    1
+                ]
+            },
+            "MedicalSpecialization": {
+                "title": "Medical Specialization Enum",
+                "type": "integer",
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            },
+            "Rate": {
+                "title": "Rate Enum",
+                "type": "integer",
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4
+                ]
+            },
+            "Role": {
+                "title": "Role Enum",
+                "type": "integer",
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Admin",
+            "description": "Admin"
+        },
+        {
+            "name": "Patient",
+            "description": "Patient"
+        },
+        {
+            "name": "Doctor",
+            "description": "Doctor"
+        },
+        {
+            "name": "Nurse",
+            "description": "Nurse"
+        },
+        {
+            "name": "Anonymous",
+            "description": "Anonymous"
+        }
+    ]
+}
